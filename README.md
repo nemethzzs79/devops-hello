@@ -1,54 +1,65 @@
-# DevOps Hello – Flask alkalmazás
+# DevOps Hello World
 
-Ez egy egyszerű „Hello world” Flask alkalmazás, amely a DevOps alap lépéseit mutatja be:
-- kódkészítés (Python)
-- verziókövetés (Git, trunk-based)
-- buildelés
-- konténerizálás Dockerrel
+Ez a projekt egy egyszerű Python Flask alkalmazást tartalmaz, amely DevOps alapfogalmak
+bemutatására szolgál.
 
-Az alkalmazás HTTP-n elérhető, és egy egyszerű szöveget ad vissza.
+Az alkalmazás egyetlen HTTP végpontot (`/`) biztosít, amely egy szöveges választ ad vissza.
 
 ---
 
-## Alkalmazás
+## Alkalmazás futtatása
 
-A Flask alkalmazás egy egyszerű HTTP endpointot tartalmaz.
+### Futtatás Docker nélkül
 
-- URL: http://localhost:8080
-- Válasz: `Hello DevOps világ!`
-
----
-
-## Követelmények
-
-- Python 3.11+  
-- pip  
-- Docker Desktop (Windows)  
-- Git  
-
----
-
-## Build és futtatás
-
-### Fejlesztői futtatás (Docker nélkül)
-
-```bash
+1. Függőségek telepítése:
 python -m pip install -r requirements.txt
+
+2. Alkalmazás indítása:
 python app.py
 
-### 1. Függőségek telepítése
+Az alkalmazás böngészőben elérhető:
+http://localhost:8080
 
-```bash
-python -m pip install -r requirements.txt
+---
 
+### Futtatás Docker használatával
 
-## 2. Választható feladat: Dev Container (3.1)
+Docker image build:
+docker build -t devops-hello:v1 .
 
-Mivel VS Code-ot és Dockert már használsz, a Dev Container a legkényelmesebb opció.
+Konténer futtatása:
+docker run -p 8080:8080 devops-hello:v1
 
-### 2.1. `.devcontainer` mappa létrehozása
+Az alkalmazás böngészőben elérhető:
+http://localhost:8080
 
-1. VS Code-ban a bal oldali **Explorerben** kattints jobb gombbal a projekt gyökerére (`devops-hello` mappa).  
-2. **New Folder** → neve:  
-   ```text
-   .devcontainer
+---
+
+## Git használata
+
+A projekt Git verziókezelést használ trunk-based fejlesztési modellben.
+
+- main branch: stabil verzió
+- feature-minor-update branch: kisebb módosítás kipróbálására
+
+A feature branch külön commitban készült, majd visszamerge-elve a main ágba.
+
+---
+
+## Választható feladat: Dev Container (VS Code)
+
+A projekt tartalmaz VS Code Dev Container konfigurációt, amely lehetővé teszi
+a fejlesztési környezet Docker konténerben történő használatát.
+
+Használat:
+- Projekt megnyitása VS Code-ban
+- Dev Containers: Reopen in Container
+- Alkalmazás indítása a konténerben: python app.py
+
+Az alkalmazás elérhető:
+http://localhost:8080
+
+---
+
+GitHub repository:
+https://github.com/nemethzzs79/devops-hello
